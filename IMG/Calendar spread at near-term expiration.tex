@@ -1,0 +1,28 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\usepackage{mathptmx}
+\usepackage{ctex}
+% \pgfplotsset{compat=1.16}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+            axis lines = middle,
+            xlabel = {$S_T$},
+            ylabel = {VTM},
+            ymin=-400, ymax=300,
+            xmin=29, xmax=71,
+            xtick={40, 50, 60},
+            ytick={-300,0,200},
+            % width=10cm,
+            % height=7cm,
+            % axis equal,
+            label style={font=\small}
+        ]
+        % 绘制看涨期权到期收益曲线
+        \addplot[domain=30:50] {0.5* x*x-15*x-300};
+        \addplot[domain=50:70] {0.5* x*x-85*x+3200};
+
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}
