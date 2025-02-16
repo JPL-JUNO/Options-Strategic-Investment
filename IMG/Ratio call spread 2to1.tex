@@ -1,0 +1,45 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\usepackage{mathptmx}
+\pgfplotsset{compat=1.16}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+            axis lines = middle,
+            xlabel = {$S_T$},
+            ylabel = {PnlTM},
+            ymin=-650, ymax=700,
+            xmin=35, xmax=60,
+            xtick={40,45,51},
+            ytick={-500, 0,100,600},
+            % width=10cm,
+            % height=7cm,
+            % axis equal,
+            label style={font=\small}
+        ]
+        % 定义参数
+        \def\Ka{40} % 执行价格
+        \def\Kb{45} % 执行价格
+        \def\Pa{5}  % 期权费
+        \def\Pb{3}  % 期权费
+        \def\multi{100}
+
+        % 绘制看涨期权到期收益曲线
+        \addplot[domain=36:\Ka,<-,dotted] {(-\Pa)*\multi};
+        \addplot[domain=\Ka:55,->,dotted] {(x-\Ka-\Pa)*\multi};
+
+        \addplot[domain=36:\Kb,<-, dotted] {\Pb*2*\multi};
+        \addplot[domain=\Kb:55,->, dotted] {(\Kb-x+\Pb)*2*\multi};
+
+        \addplot[domain=36:\Ka, <-] {(-\Pa+\Pb*2)*\multi};
+        \addplot[domain=\Ka:\Kb] {(x-\Ka-\Pa+\Pb*2)*\multi};
+        \addplot[domain=\Kb:56] {((\Kb-x+\Pb)* 2 + (x-\Ka-\Pa))*\multi};
+        % \addplot[domain=36:\Ka, <-] {(-\Pa+\Pb*2)*\multi};
+        % \addplot[domain=\Ka:75,->,dotted] {(x-\Ka-\Pa)*\multi};
+
+        % \addplot[domain=40:\Kb,<-,dotted] {2*\Pb*\multi};
+        % \addplot[domain=\Kb:75,->,dotted] {(\Kb-x+\Pb)*2*\multi};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}
