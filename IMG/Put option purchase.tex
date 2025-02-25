@@ -1,0 +1,36 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\usepackage{mathptmx}
+\usepackage{ctex}
+% \pgfplotsset{compat=1.16}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+            axis lines = middle,
+            xlabel = {$S_T$},
+            ylabel = {VTM},
+            ymin=-1200, ymax=1200,
+            xmin=40, xmax=55,
+            xtick={45, 50, 52},
+            % ytick={-300,-100,0,200, 300},
+            label style={font=\small}
+        ]
+        % 定义参数
+        \def\S{52}
+        \def\Sb{45}
+        \def\P{2}
+        \def\K{50}
+
+        % 绘制看涨期权到期收益曲线
+        \addplot[domain=\K:52,->] {-\P*100};
+        \addplot[domain=40:\K,<-] {(\K-x-\P)*100};
+        % \addplot[domain=\Ka:\Kb,thick] {(\Ka-x+\Pa-\Pb)*100};
+        % \addplot[domain=\Kb:42, ->,thick] {(\Ka-\Kb+\Pa-\Pb)*100};
+
+        % \node[circle, fill, inner sep=0.1pt, minimum size=3pt] at (axis cs:45,600) [below right] {$600$};
+        \addplot[only marks, mark=*] coordinates {(45,600)};
+
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

@@ -3,5 +3,16 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{enumitem}
-\setlist[enumerate]{topsep=.5ex, partopsep=0ex, parsep=.5ex, itemsep=0ex}
+\setlist[enumerate]{topsep=0ex, partopsep=0ex, parsep=0ex, itemsep=0ex}
+\setlist[itemize]{topsep=0ex, partopsep=0ex, parsep=0ex, itemsep=0ex}
 \usepackage{mathptmx}
+\usepackage{tcolorbox}
+\tcbset{colframe=red!75!black}
+\tcbuselibrary{skins, breakable}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, % 将链接颜色化
+    linkcolor=orange,  % 内部链接颜色
+    citecolor=orange, % 引用颜色
+    urlcolor=orange % URL 颜色
+}
