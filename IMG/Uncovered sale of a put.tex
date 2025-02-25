@@ -1,0 +1,35 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\usepackage{mathptmx}
+\usepackage{ctex}
+% \pgfplotsset{compat=1.16}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = {$S_T$},
+        ymin=-550, ymax=550,
+        xmin=40, xmax=60,
+        scaled x ticks=false,
+        xtick={\KP, \KP-\PP},
+        ytick={\PP*\MUL},
+        % width=10cm,
+        % height=7cm,
+        % axis equal,
+        label style={font=\small}
+    ]
+    % 定义参数
+    \def\St{47}  % 期权费
+    \def\KC{50}
+    \def\KP{50}
+    \def\PC{2}
+    \def\PP{4}
+    \def\MUL{100}
+    
+    % 绘制看涨期权到期收益曲线
+    \addplot[domain=38:58, samples=200] {(min(0, x-\KP)+\PP)*\MUL};
+    
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}
