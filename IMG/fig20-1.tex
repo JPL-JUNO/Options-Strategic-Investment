@@ -1,0 +1,41 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\usepackage{mathptmx}
+\usepackage{ctex}
+\pgfplotsset{compat=1.18}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+            axis lines = middle,
+            xlabel = {$S_T$},
+            ymin=-550, ymax=1000,
+            xmin=35, xmax=60,
+            scaled x ticks=false,
+            xtick={46, \KC, \KP},
+            % width=10cm,
+            % height=7cm,
+            % axis equal,
+            label style={font=\small}
+        ]
+        % 定义参数
+        \def\St{51}  % 期权费
+        \def\KC{50}
+        \def\KP{50}
+        \def\PC{5}
+        \def\PP{4}
+        \def\MUL{100}
+
+        % 绘制看涨期权到期收益曲线
+        \addplot[domain=35:60,dotted,samples=300] {(min(0, \KC-x)+\PC)*\MUL};
+        \addplot[domain=35:60,dotted,samples=300] {(min(0, x-\KP)+\PP)*\MUL};
+        \addplot[domain=35:60,dotted,samples=300] {(x-\St)*\MUL};
+        \addplot[domain=35:60,samples=300, thick] {(x-\St+min(0, \KC-x)+\PC+min(0, x-\KP)+\PP)*\MUL};
+        \addplot[domain=35:60,samples=300] {(x-\St+min(0, \KC-x)+\PC)*\MUL};
+        % \addplot[domain=40:56,dotted, samples=200] {(max(0, x-\KC)-\PC)*\MUL};
+        % \addplot[domain=40:56,dotted, samples=200] {(max(0, \KP-x)-\PP)*\MUL};
+        % \addplot[domain=38:58, samples=200] {(max(0, \KP-x)-\PP+max(0, x-\KC)-\PC)*\MUL};
+
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}
